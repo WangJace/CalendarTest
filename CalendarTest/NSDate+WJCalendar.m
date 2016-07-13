@@ -100,4 +100,44 @@
     return numberOfWeeks;
 }
 
+- (NSDate *)getPreviousMonthFinalDay;
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *componets;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        componets = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self];
+    }
+    else {
+        componets = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+    }
+    
+    componets.day = 1;
+    componets.month = componets.month-1;
+    NSUInteger days = [[calendar dateFromComponents:componets] numberOfDaysInCurrentMonth];
+    componets.day = days;
+    componets.hour = 8;
+    componets.minute = 0;
+    componets.second = 0;
+    return [calendar dateFromComponents:componets];
+}
+
+- (NSDate *)getFollowMonthFirstDay
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *componets;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        componets = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self];
+    }
+    else {
+        componets = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+    }
+    
+    componets.day = 1;
+    componets.hour = 8;
+    componets.minute = 0;
+    componets.second = 0;
+    componets.month = componets.month+1;
+    return [calendar dateFromComponents:componets];
+}
+
 @end

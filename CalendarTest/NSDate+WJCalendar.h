@@ -58,4 +58,18 @@
  */
 - (NSUInteger)numberOfWeekInCurrentMonth;
 
+/**
+ *  获取上个月的最后一天的日期
+ *
+ *  @return 上个月最后一天日期
+ */
+- (NSDate *)getPreviousMonthFinalDay;
+
+/**
+ *  获取下个月第一天的日期
+ *
+ *  @return 下个月第一天日期
+ */
+- (NSDate *)getFollowMonthFirstDay;
+
 @end

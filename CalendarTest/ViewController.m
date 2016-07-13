@@ -36,13 +36,13 @@
         switch (derection) {
             case UISwipeGestureRecognizerDirectionLeft:
             {
-                weakSelf.showDate = [[weakSelf.showDate getLastDayOfCurrentMonth] dateByAddingTimeInterval:3600*24];
+                weakSelf.showDate = [weakSelf.showDate getFollowMonthFirstDay];
                 [weakSelf setDataSource];
             }
                 break;
             case UISwipeGestureRecognizerDirectionRight:
             {
-                weakSelf.showDate = [[weakSelf.showDate getFirstDayOfCurrentMonth] dateByAddingTimeInterval:-3600*24];
+                weakSelf.showDate = [weakSelf.showDate getPreviousMonthFinalDay];
                 [weakSelf setDataSource];
             }
                 break;
